@@ -13,7 +13,6 @@ function getComputerChoice() {
     return "Scissors";
   }
 }
-
 let computerChoice = getComputerChoice();
 console.log(computerChoice);
 
@@ -32,7 +31,40 @@ function getHumanChoice() {
     alert("Invalid choice entered, refresh to start again.")
   }
 }
-
 let humanChoice = getHumanChoice();
 console.log(humanChoice);
 
+function playRound(computerSelection, humanSelection) {
+  if (computerSelection === humanSelection) {
+    computerScore = ++computerScore;
+    humanScore = ++humanScore;
+    console.log("Computer score: " + computerScore);
+    console.log("Human score: " + humanScore);
+  } else if (computerSelection === "Rock" && humanSelection === "Scissors") {
+    computerScore = ++computerScore;
+    console.log("Computer score: " + computerScore);
+    console.log("Human score: " + humanScore);
+  } else if (computerSelection === "Scissors" && humanSelection === "Rock") {
+    humanScore = ++humanScore;
+    console.log("Computer score: " + computerScore);
+    console.log("Human score: " + humanScore);
+  } else if (computerSelection === "Scissors" && humanSelection === "Paper") {
+    computerScore = ++computerScore;
+    console.log("Computer score: " + computerScore);
+    console.log("Human score: " + humanScore);
+  } else if (computerSelection === "Paper" && humanSelection === "Scissors") {
+    humanScore = ++humanScore;
+    console.log("Computer score: " + computerScore);
+    console.log("Human score: " + humanScore);
+  } else if (computerSelection === "Paper" && humanSelection === "Rock") {
+    computerScore = ++computerScore;
+    console.log("Computer score: " + computerScore);
+    console.log("Human score: " + humanScore);
+  } else if (computerSelection === "Rock" && humanSelection === "Paper") {
+    humanScore = ++humanScore;
+    console.log("Computer score: " + computerScore);
+    console.log("Human score: " + humanScore);
+  }
+}
+
+playRound(computerChoice, humanChoice);
