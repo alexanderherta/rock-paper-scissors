@@ -1,13 +1,14 @@
 let computerScore = 0;
 let humanScore = 0;
+let isThereAWinner = false;
 
 //Plays the game for 5 rounds and tracks the scores.
 function playGame() {
-  for (let roundNumber = 1; roundNumber <= 5; roundNumber++) {
+  while(!isThereAWinner) {
     let computerChoice = getComputerChoice();
     let humanChoice = getHumanChoice();
     playRound(computerChoice, humanChoice);
-    
+      
     if (computerScore > humanScore) {
       alert(`Computer is currently winning ${computerScore} - ${humanScore}`);
     } else if (humanScore > computerScore) {
@@ -15,7 +16,13 @@ function playGame() {
     } else {
       alert(`Computer and Human are currently tied ${humanScore} - ${computerScore}`);
     }
+
+    if(computerScore == 5 || humanScore == 5) {
+      isThereAWinner = true;
+    }
   }
+
+
   if (computerScore > humanScore) {
     alert(`Computer wins the game ${computerScore} - ${humanScore} !`);
   } else if (humanScore > computerScore) {
