@@ -1,5 +1,8 @@
 let computerScore = 0;
 let humanScore = 0;
+let computerScoreCounter = document.querySelector("#computer-score-counter");
+let humanScoreCounter = document.querySelector("#human-score-counter");
+let gameInfo = document.querySelector("#game-info");
 let rockButton = document.querySelector(".rock-button");
 let paperButton = document.querySelector(".paper-button");
 let scissorsButton = document.querySelector(".scissors-button");
@@ -23,13 +26,6 @@ function playGame(userChoice) {
   playRound(computerChoice, humanChoice);
   console.log(computerChoice);    
   console.log(humanChoice);
-  if (computerScore > humanScore) {
-    alert(`Computer is currently winning ${computerScore} - ${humanScore}`);
-  } else if (humanScore > computerScore) {
-    alert(`Human is currently winning ${humanScore} - ${computerScore}`);
-  } else {
-    alert(`Computer and Human are currently tied ${humanScore} - ${computerScore}`);
-  }
 }
 
 //The computer selects either Rock, Paper, or Scissors.
@@ -50,39 +46,39 @@ function playRound(computerSelection, humanSelection) {
   if (computerSelection === humanSelection) {
     ++computerScore;
     ++humanScore;
-    alert(`Both Computer and Human chose ${computerSelection}. Tie!`);
-    console.log("Computer score: " + computerScore);
-    console.log("Human score: " + humanScore);
+    gameInfo.innerText = `Both Computer and Human chose ${computerSelection}. Tie!`;
+    computerScoreCounter.innerText = computerScore;
+    humanScoreCounter.innerText = humanScore;
   } else if (computerSelection === "Rock" && humanSelection === "Scissors") {
     ++computerScore;
-    alert("Computer won this round with Rock against Scissors!");
-    console.log("Computer score: " + computerScore);
-    console.log("Human score: " + humanScore);
+    gameInfo.innerText = `Computer won this round with Rock against Scissors!`;
+    computerScoreCounter.innerText = computerScore;
+    humanScoreCounter.innerText = humanScore;
   } else if (computerSelection === "Scissors" && humanSelection === "Paper") {
     ++computerScore;
-    alert("Computer won this round with Scissors against Paper!");
-    console.log("Computer score: " + computerScore);
-    console.log("Human score: " + humanScore);
+    gameInfo.innerText = `Computer won this round with Scissors against Paper!`;
+    computerScoreCounter.innerText = computerScore;
+    humanScoreCounter.innerText = humanScore;
   } else if (computerSelection === "Scissors" && humanSelection === "Rock") {
     ++humanScore;
-    alert("Human won this round with Rock against Scissors!");
-    console.log("Computer score: " + computerScore);
-    console.log("Human score: " + humanScore);
+    gameInfo.innerText = `Human won this round with Rock against Scissors!`;
+    computerScoreCounter.innerText = computerScore;
+    humanScoreCounter.innerText = humanScore;
   } else if (computerSelection === "Paper" && humanSelection === "Scissors") {
     ++humanScore;
-    alert("Human won this round with Scissors against Paper!");
-    console.log("Computer score: " + computerScore);
-    console.log("Human score: " + humanScore);
+    gameInfo.innerText = `Human won this round with Scissors against Paper!`;
+    computerScoreCounter.innerText = computerScore;
+    humanScoreCounter.innerText = humanScore;
   } else if (computerSelection === "Paper" && humanSelection === "Rock") {
     ++computerScore;
-    alert("Computer won this round with Paper against Rock!");
-    console.log("Computer score: " + computerScore);
-    console.log("Human score: " + humanScore);
+    gameInfo.innerText = `Computer won this round with Paper against Rock!`;
+    computerScoreCounter.innerText = computerScore;
+    humanScoreCounter.innerText = humanScore;
   } else if (computerSelection === "Rock" && humanSelection === "Paper") {
     ++humanScore;
-    alert("Human won this round with Paper against Rock!");
-    console.log("Computer score: " + computerScore);
-    console.log("Human score: " + humanScore);
+    gameInfo.innerText = `Human won this round with Paper against Rock!`;
+    computerScoreCounter.innerText = computerScore;
+    humanScoreCounter.innerText = humanScore;
   }
 }
 
