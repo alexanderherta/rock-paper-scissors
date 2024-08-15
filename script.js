@@ -2,10 +2,14 @@ let computerScore = 0;
 let humanScore = 0;
 let computerScoreCounter = document.querySelector("#computer-score-counter");
 let humanScoreCounter = document.querySelector("#human-score-counter");
+let scoreDiv1 = document.querySelector(".score-div1");
+let scoreDiv2 = document.querySelector(".score-div2");
 let gameInfo = document.querySelector("#game-info");
+let chooseText = document.querySelector("#choose-text");
 let rockButton = document.querySelector(".rock-button");
 let paperButton = document.querySelector(".paper-button");
 let scissorsButton = document.querySelector(".scissors-button");
+let buttons = document.querySelector(".buttons");
 
 function detectUserChoice() {
   rockButton.addEventListener("click", (e) => {
@@ -20,12 +24,14 @@ function detectUserChoice() {
 }
 detectUserChoice();
 
+//Plays through the game until a player gets a score of 5
 function playGame(userChoice) {
   let computerChoice = getComputerChoice();
   let humanChoice = userChoice;
   playRound(computerChoice, humanChoice);
-  console.log(computerChoice);    
-  console.log(humanChoice);
+  if (humanScore == 5 || computerScore == 5) {
+    gameEnd();
+  }
 }
 
 //The computer selects either Rock, Paper, or Scissors.
@@ -41,7 +47,7 @@ function getComputerChoice() {
   }
 }
 
-//Plays a round of the game and checks who wins
+//Plays a round of the game and increments scores
 function playRound(computerSelection, humanSelection) {
   if (computerSelection === humanSelection) {
     ++computerScore;
@@ -82,52 +88,20 @@ function playRound(computerSelection, humanSelection) {
   }
 }
 
-//Plays the game for 5 rounds and tracks the scores.
+//Ends the game and displays score of both players
 function gameEnd() {
   if (computerScore > humanScore) {
-    alert(`Computer wins the game ${computerScore} - ${humanScore} !`);
+    gameInfo.innerText = `Computer wins the game ${computerScore} - ${humanScore}!`;
   } else if (humanScore > computerScore) {
-    alert(`Human wins the game ${humanScore} - ${computerScore} !`);
+    gameInfo.innerText = `Human wins the game ${humanScore} - ${computerScore}!`;
   } else {
-    alert(`Computer and Human have tied ${computerScore} - ${humanScore} !`);
+    gameInfo.innerText = `Computer and Human have tied ${computerScore} - ${humanScore}!`;
   }
+  chooseText.innerText = "";
+  buttons.remove();
+  scoreDiv2.remove();
+  scoreDiv1.innerText = "Refresh page to play again!";
 }
-
-
-
-//The user selects either Rock, Paper, or Scissors.
-// function getHumanChoice() {
-//   let choice = prompt("Rock, Paper, or Scissors?");
-//   choice = choice.toLowerCase();
-    
-//   if (choice === "rock") {
-//     return "Rock";
-//   } else if (choice === "paper") {
-//     return "Paper";
-//   } else if (choice === "scissors") {
-//     return "Scissors";
-//   } else {
-//     alert("Invalid choice entered, refresh to start again.");
-//   }
-
-//   new stuff
-  
-//   while(humanIsChoosing) {
-//     rockButton.addEventListener("click", (e) => {
-//       humanIsChoosing = false;
-//       return "Rock";
-//     });
-//     paperButton.addEventListener("click", (e) => {
-//       humanIsChoosing = false;
-//       return "Paper";
-//     });
-//     scissorsButton.addEventListener("click", (e) => {
-//       humanIsChoosing = false;
-//       return "Scissors";
-//     });
-//   }
-// }
-
 
 
 

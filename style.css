@@ -55,7 +55,7 @@ button:hover {
   color: blue;
 }
 
-.score-div {
+.score-div1, .score-div2 {
   font-size: 30px;
   font-weight: bold;
 }
