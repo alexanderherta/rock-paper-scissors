@@ -1,5 +1,6 @@
 let computerScore = 0;
 let humanScore = 0;
+let textColorAlternation = true;
 let computerScoreCounter = document.querySelector("#computer-score-counter");
 let humanScoreCounter = document.querySelector("#human-score-counter");
 let scoreDiv1 = document.querySelector(".score-div1");
@@ -28,9 +29,15 @@ detectUserChoice();
 function playGame(userChoice) {
   let computerChoice = getComputerChoice();
   let humanChoice = userChoice;
+  changeTextColor();
   playRound(computerChoice, humanChoice);
+  textColorAlternation = !textColorAlternation;
   if (humanScore == 5 || computerScore == 5) {
-    gameEnd();
+    buttons.remove();
+    chooseText.innerText = "";
+    setTimeout(() => {
+      gameEnd();
+    }, 3000);
   }
 }
 
@@ -44,6 +51,15 @@ function getComputerChoice() {
     return "Paper";
   } else {
     return "Scissors";
+  }
+}
+
+//Changes text color of the game info paragraph
+function changeTextColor() {
+  if (textColorAlternation) {
+    gameInfo.style.color = "blue";
+  } else if (!textColorAlternation) {
+    gameInfo.style.color = "purple";
   }
 }
 
@@ -90,6 +106,7 @@ function playRound(computerSelection, humanSelection) {
 
 //Ends the game and displays score of both players
 function gameEnd() {
+  gameInfo.style.color = "orangered";
   if (computerScore > humanScore) {
     gameInfo.innerText = `Computer wins the game ${computerScore} - ${humanScore}!`;
   } else if (humanScore > computerScore) {
@@ -97,11 +114,6 @@ function gameEnd() {
   } else {
     gameInfo.innerText = `Computer and Human have tied ${computerScore} - ${humanScore}!`;
   }
-  chooseText.innerText = "";
-  buttons.remove();
   scoreDiv2.remove();
   scoreDiv1.innerText = "Refresh page to play again!";
 }
-
-
-
